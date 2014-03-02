@@ -1,13 +1,13 @@
 package com.github.kopzu.catalog.service;
 
 import com.github.kopzu.catalog.model.Item;
+import com.github.kopzu.catalog.model.ItemType;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.SteamGame;
 import com.github.koraktor.steamcondenser.steam.community.SteamId;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +19,9 @@ public class ImportServiceImpl implements ImportService {
     @Override
     public List<Item> persistSteamGames(String userName) throws SteamCondenserException {
         List<Item> importedItems = new ArrayList<>();
-        HashMap<Integer, SteamGame> games = SteamId.create(userName).getGames();
         // TODO replace with persistence logic
-        for (Map.Entry<Integer, SteamGame> gameEntry : games.entrySet()) {
-            importedItems.add(new Item(gameEntry.getKey().longValue(), gameEntry.getValue().getName()));
+        for (Map.Entry<Integer, SteamGame> game : SteamId.create(userName).getGames().entrySet()) {
+            importedItems.add(new Item(game.getKey().longValue(), game.getValue().getName(), ItemType.GAME));
         }
 
         return importedItems;
