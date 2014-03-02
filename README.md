@@ -4,7 +4,7 @@ catalog
 For managing personal digital (and other) content 
 
 ##Installation
-??
+TODO
 
 ###Technology stack
 ####Client-side
