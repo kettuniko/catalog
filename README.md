@@ -1,4 +1,4 @@
 catalog
 =======
 
-For managing digital (and other) content 
+For managing personal digital (and other) content 
