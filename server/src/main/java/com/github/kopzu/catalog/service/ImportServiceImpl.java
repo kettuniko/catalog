@@ -17,17 +17,14 @@ import java.util.Map;
 @Service
 public class ImportServiceImpl implements ImportService {
     @Override
-    public List<Item> persistSteamGames(String userName) {
+    public List<Item> persistSteamGames(String userName) throws SteamCondenserException {
         List<Item> importedItems = new ArrayList<>();
-        try {
-            HashMap<Integer, SteamGame> games = SteamId.create(userName).getGames();
-            // TODO replace with persistence logic
-            for (Map.Entry<Integer, SteamGame> gameEntry : games.entrySet()) {
-                importedItems.add(new Item(gameEntry.getKey().longValue(), gameEntry.getValue().getName()));
-            }
-        } catch (SteamCondenserException e) {
-            throw new RuntimeException("Failed to import games.", e);
+        HashMap<Integer, SteamGame> games = SteamId.create(userName).getGames();
+        // TODO replace with persistence logic
+        for (Map.Entry<Integer, SteamGame> gameEntry : games.entrySet()) {
+            importedItems.add(new Item(gameEntry.getKey().longValue(), gameEntry.getValue().getName()));
         }
+
         return importedItems;
     }
 }

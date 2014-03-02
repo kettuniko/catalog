@@ -1,7 +1,6 @@
 package com.github.kopzu.catalog.service;
 
 import com.github.kopzu.catalog.model.Item;
-import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.SteamGame;
 import com.github.koraktor.steamcondenser.steam.community.SteamId;
 import org.junit.Before;
@@ -56,9 +55,4 @@ public class ImportServiceImplTest {
         assertEquals(games.size(), gamesPersisted.size());
     }
 
-    @Test(expected = RuntimeException.class)
-    public void throwsRuntimeExceptionWhenApiFails() throws Exception {
-        when(SteamId.create(PLAYER_NAME)).thenThrow(new SteamCondenserException());
-        context.persistSteamGames(PLAYER_NAME);
-    }
 }
