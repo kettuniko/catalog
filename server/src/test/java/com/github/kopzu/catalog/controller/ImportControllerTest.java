@@ -38,7 +38,7 @@ public class ImportControllerTest {
     private ImportService importService;
 
     @Before
-    public void setUpBaseControllerTest() throws Exception {
+    public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(context).build();
     }
 
