@@ -43,24 +43,16 @@ gulp.task('vendor', function () {
 });
 // Jade main
 gulp.task('templates', function () {
-  var YOUR_LOCALS = {};
-
   gulp.src('app/*.jade')
-      .pipe(jade({
-        locals: YOUR_LOCALS
-      }))
+      .pipe(jade())
       .pipe(gulp.dest('./dist/'))
       .pipe(livereload())
 });
 
 // Jade partials
 gulp.task('partials', function () {
-  var YOUR_LOCALS = {};
-
   gulp.src('app/partials/*.jade')
-      .pipe(jade({
-        locals: YOUR_LOCALS
-      }))
+      .pipe(jade())
       .pipe(gulp.dest('./dist/partials'))
       .pipe(livereload())
 });
