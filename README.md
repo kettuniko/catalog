@@ -8,6 +8,12 @@ TODO
 
 ###Technology stack
 ####Client-side
+* AngularJS
+* Jade
+* SASS
+* gulp.js
+* bower
+
 ####Server-side
 * Gradle
 * Java
