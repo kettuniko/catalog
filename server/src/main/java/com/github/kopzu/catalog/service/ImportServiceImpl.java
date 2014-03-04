@@ -6,29 +6,32 @@ import com.github.kopzu.catalog.model.ItemType;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.SteamGame;
 import com.github.koraktor.steamcondenser.steam.community.SteamId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author niko 01.03.2014
  */
 @Service
 public class ImportServiceImpl implements ImportService {
+    @Autowired
+    private DatabaseService databaseService;
+
     @Override
     public List<Item> persistSteamGames(String userName) throws ResourceNotFoundException {
         List<Item> importedItems = new ArrayList<>();
-        // TODO replace with persistence logic
         try {
-            for (Map.Entry<Integer, SteamGame> game : SteamId.create(userName).getGames().entrySet()) {
-                importedItems.add(new Item(game.getKey().longValue(), game.getValue().getName(), ItemType.GAME));
+            for (SteamGame game : SteamId.create(userName).getGames().values()) {
+                importedItems.add(new Item(game.getName(), ItemType.GAME));
             }
         } catch (SteamCondenserException sce) {
             throw new ResourceNotFoundException(sce);
         }
 
+        databaseService.saveItems(importedItems);
         return importedItems;
     }
 }

@@ -8,7 +8,6 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var jade = require('gulp-jade');
 var livereload = require('gulp-livereload');
-var bowerSrc = require('gulp-bower-src');
 var server = livereload();
 
 // Lint Task
@@ -18,7 +17,7 @@ gulp.task('lint', function () {
       .pipe(jshint.reporter('default'))
 });
 
-// Compile Our Sass
+// Compile Sass
 gulp.task('sass', function () {
   return gulp.src('app/scss/*.scss')
       .pipe(sass())
@@ -35,12 +34,14 @@ gulp.task('scripts', function () {
       .pipe(gulp.dest('dist'))
       .pipe(livereload())
 });
- // Vendor scripts
+
+// Vendor scripts
 gulp.task('vendor', function () {
   return gulp.src('app/bower_components/**/*.min.js')
       .pipe(concat('vendor.min.js'))
       .pipe(gulp.dest('dist/vendor'))
 });
+
 // Jade main
 gulp.task('templates', function () {
   gulp.src('app/*.jade')
@@ -56,7 +57,6 @@ gulp.task('partials', function () {
       .pipe(gulp.dest('./dist/partials'))
       .pipe(livereload())
 });
-
 
 // Watch Files For Changes
 gulp.task('watch', function () {

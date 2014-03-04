@@ -1,17 +1,26 @@
 package com.github.kopzu.catalog.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @author niko 01.03.2014
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "items")
 public class Item {
-    private Long id;
+    @Id
+    private String id;
     private String name;
     private ItemType type;
+    private boolean completed;
+
+    public Item(String name, ItemType type) {
+        this.name = name;
+        this.type = type;
+    }
+
 }

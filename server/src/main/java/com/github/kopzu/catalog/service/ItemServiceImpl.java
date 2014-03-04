@@ -2,9 +2,12 @@ package com.github.kopzu.catalog.service;
 
 import com.github.kopzu.catalog.model.Item;
 import com.github.kopzu.catalog.model.ItemType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,9 +15,13 @@ import java.util.List;
  */
 @Service
 public class ItemServiceImpl implements ItemService {
+    @Autowired
+    private DatabaseService databaseService;
 
     @Override
     public List<Item> getItems(ItemType itemType) {
-        return Arrays.asList(new Item(1l, "CSS", ItemType.GAME), new Item(2l, "TF2", ItemType.GAME));
+        MongoOperations operations = databaseService.createOperations();
+        Query searchUserQuery = new Query(Criteria.where("type").is(itemType));
+        return operations.find(searchUserQuery, Item.class);
     }
 }
