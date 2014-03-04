@@ -2,7 +2,8 @@ package com.github.kopzu.catalog.controller;
 
 import com.github.kopzu.catalog.exception.ResourceNotFoundException;
 import com.github.kopzu.catalog.model.Item;
-import com.github.kopzu.catalog.service.ImportService;
+import com.github.kopzu.catalog.model.ItemType;
+import com.github.kopzu.catalog.service.ItemService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,17 +26,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * @author niko 01.03.2014
+ * @author niko 04.03.2014
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ImportControllerTest {
-
-    public static final String PLAYER_NAME = "testPlayer";
+public class ItemControllerTest {
     @InjectMocks
-    protected ImportController context;
+    protected ItemController context;
     protected MockMvc mockMvc;
     @Mock
-    private ImportService importService;
+    private ItemService itemService;
 
     @Before
     public void setUp() throws Exception {
@@ -44,33 +43,33 @@ public class ImportControllerTest {
 
     @After
     public void tearDown() {
-        verifyNoMoreInteractions(importService);
+        verifyNoMoreInteractions(itemService);
     }
 
     @Test
-    public void returnsImportedItems() throws Exception {
+    public void returnsItems() throws Exception {
         List<Item> items = asList(new Item(), new Item());
-        whenPersists().thenReturn(items);
+        whenGetItems().thenReturn(items);
 
-        performSteamImport()
+        performGetItems()
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(items.size())));
 
-        verify(importService).persistSteamGames(PLAYER_NAME);
+        verify(itemService).getItems(ItemType.GAME);
     }
 
-    private ResultActions performSteamImport() throws Exception {
-        return mockMvc.perform(get("/import/steam").param("userName", PLAYER_NAME));
+    private ResultActions performGetItems() throws Exception {
+        return mockMvc.perform(get("/items").param("type", "GAME"));
     }
 
-    private OngoingStubbing<List<Item>> whenPersists() throws Exception {
-        return when(importService.persistSteamGames(PLAYER_NAME));
+    private OngoingStubbing<List<Item>> whenGetItems() throws Exception {
+        return when(itemService.getItems(ItemType.GAME));
     }
 
     @Test
     public void statusIsNotFoundWhenError() throws Exception {
-        whenPersists().thenThrow(new ResourceNotFoundException());
-        performSteamImport().andExpect(status().isNotFound());
-        verify(importService).persistSteamGames(PLAYER_NAME);
+        whenGetItems().thenThrow(new ResourceNotFoundException());
+        performGetItems().andExpect(status().isNotFound());
+        verify(itemService).getItems(ItemType.GAME);
     }
 }

@@ -1,5 +1,6 @@
 package com.github.kopzu.catalog.service;
 
+import com.github.kopzu.catalog.exception.ResourceNotFoundException;
 import com.github.kopzu.catalog.model.Item;
 import com.github.kopzu.catalog.model.ItemType;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
@@ -17,11 +18,15 @@ import java.util.Map;
 @Service
 public class ImportServiceImpl implements ImportService {
     @Override
-    public List<Item> persistSteamGames(String userName) throws SteamCondenserException {
+    public List<Item> persistSteamGames(String userName) throws ResourceNotFoundException {
         List<Item> importedItems = new ArrayList<>();
         // TODO replace with persistence logic
-        for (Map.Entry<Integer, SteamGame> game : SteamId.create(userName).getGames().entrySet()) {
-            importedItems.add(new Item(game.getKey().longValue(), game.getValue().getName(), ItemType.GAME));
+        try {
+            for (Map.Entry<Integer, SteamGame> game : SteamId.create(userName).getGames().entrySet()) {
+                importedItems.add(new Item(game.getKey().longValue(), game.getValue().getName(), ItemType.GAME));
+            }
+        } catch (SteamCondenserException sce) {
+            throw new ResourceNotFoundException(sce);
         }
 
         return importedItems;
