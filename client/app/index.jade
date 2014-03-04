@@ -1,19 +1,17 @@
 doctype html
 html(lang='en', ng-app='myApp')
-head
-  meta(charset='utf-8')
-  title My AngularJS App
-  link(rel='stylesheet', href='css/app.css')
+  head
+    meta(charset='utf-8')
+    title Catalog
+    link(rel='stylesheet', href='css/app.css')
   body
-ul.menu
-  li
-    a(href='#/view1') view1 a
-  li
-    a(href='#/view2') view2
-div(ng-view='')
-div
-  | Angular seed app:
-  span(app-version='')
+  h1 Catalog
+  ul.menu
+    li
+      a(href='#/items') Items
+    li
+      a(href='#/options') Options
+  div(ng-view='')
 
 script(src='vendor/vendor.min.js')
 script(src='all.js')
