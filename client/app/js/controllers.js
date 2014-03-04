@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+  controller('ItemsCtrl', [function() {
 
   }])
-  .controller('MyCtrl2', [function() {
+  .controller('OptionsCtrl', [function() {
 
   }]);
