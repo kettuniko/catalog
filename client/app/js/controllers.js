@@ -3,9 +3,8 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('ItemsCtrl', [function() {
+    controller('ItemsCtrl',function ($scope, Items) {
+      $scope.items = Items.query({type: 'GAME'});
+    }).controller('OptionsCtrl', function () {
 
-  }])
-  .controller('OptionsCtrl', [function() {
-
-  }]);
+    });
