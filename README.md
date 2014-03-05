@@ -7,7 +7,7 @@ For managing personal digital (and other) content
 ###Client
 ####To install and launch a light http-server on localhost:8080
 * cd client
-* npm install -g bower gulp
+* npm install -g bower gulp http-server
 * npm install && bower install
 * gulp
 * cd dist && http-server .
