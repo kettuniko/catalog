@@ -8,6 +8,7 @@ For managing personal digital (and other) content
 ####To install and launch a light http-server on localhost:8080
 * cd client
 * npm install -g bower gulp
+* gulp
 * npm install && bower install
 * cd dist && http-server .
 
