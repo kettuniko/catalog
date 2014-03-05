@@ -60,7 +60,7 @@ public class ImportControllerTest {
     }
 
     private ResultActions performSteamImport() throws Exception {
-        return mockMvc.perform(get("/import/steam").param("userName", PLAYER_NAME));
+        return mockMvc.perform(get("/import/steam").param("username", PLAYER_NAME));
     }
 
     private OngoingStubbing<List<Item>> whenPersists() throws Exception {

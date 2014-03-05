@@ -21,10 +21,10 @@ public class ImportServiceImpl implements ImportService {
     private DatabaseService databaseService;
 
     @Override
-    public List<Item> persistSteamGames(String userName) throws ResourceNotFoundException {
+    public List<Item> persistSteamGames(String username) throws ResourceNotFoundException {
         List<Item> importedItems = new ArrayList<>();
         try {
-            for (SteamGame game : SteamId.create(userName).getGames().values()) {
+            for (SteamGame game : SteamId.create(username).getGames().values()) {
                 importedItems.add(new Item(game.getName(), ItemType.GAME, game.getLogoUrl()));
             }
         } catch (SteamCondenserException sce) {

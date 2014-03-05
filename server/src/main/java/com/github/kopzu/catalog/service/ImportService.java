@@ -12,8 +12,8 @@ public interface ImportService {
     /**
      * Persists steam games of given user
      *
-     * @param userName steam username (needs to be public)
+     * @param username steam username (needs to be public)
      * @return list of new games persisted
      */
-    List<Item> persistSteamGames(String userName) throws ResourceNotFoundException;
+    List<Item> persistSteamGames(String username) throws ResourceNotFoundException;
 }

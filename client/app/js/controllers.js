@@ -5,6 +5,13 @@
 angular.module('myApp.controllers', []).
     controller('ItemsCtrl',function ($scope, Items) {
       $scope.items = Items.query({type: 'GAME'});
-    }).controller('OptionsCtrl', function () {
-
+        console.log($scope.items);
+    }).controller('OptionsCtrl', function ($scope, Import) {
+        $scope.importGames = function () {
+            $scope.importedItems = Import.query({username: $scope.username}, function () {
+                $scope.error = false;
+            }, function () {
+                $scope.error = true;
+            });
+        }
     });

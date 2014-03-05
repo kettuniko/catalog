@@ -1,1 +1,7 @@
-| options
+h4 Import games from Steam
+.row
+    | Username:
+    input(ng-model='username')
+    button(ng-click='importGames()') Import
+    p.success(ng-show='importedItems.length > 0') Succesfully imported {{importedItems.length}} games!
+    p.error(ng-show='error') Error importing games. Is the profile public?

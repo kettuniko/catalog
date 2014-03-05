@@ -25,7 +25,7 @@ public class ImportController {
     @RequestMapping("/steam")
     public
     @ResponseBody
-    List<Item> importSteamGames(@RequestParam String userName) {
-        return importService.persistSteamGames(userName);
+    List<Item> importSteamGames(@RequestParam String username) {
+        return importService.persistSteamGames(username);
     }
 }
