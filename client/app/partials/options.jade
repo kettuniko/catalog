@@ -1,7 +1,9 @@
-h4 Import games from Steam
-.row
-    | Username:
-    input(ng-model='username')
-    button(ng-click='importGames()') Import
-    p.success(ng-show='importedItems.length > 0') Succesfully imported {{importedItems.length}} games!
-    p.error(ng-show='error') Error importing games. Is the profile public?
+.import
+    h4 Steam username
+    .row
+        form(ng-submit='importGames')
+            input(ng-model='username')
+            button(ng-click='importGames()', ng-hide='importing') Import
+            img(src='img/ajax-loader.gif', alt='Loading...', ng-show='importing')
+        p.success(ng-show='importedItems.length > 0') Succesfully imported {{importedItems.length}} games!
+        p.error(ng-show='error') Error importing games. Is the profile public?

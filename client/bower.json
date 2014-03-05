@@ -5,7 +5,8 @@
   "authors": [
     "niko (kopzu)"
   ],
-  "main": "index.html",
+    "directory": "app/",
+    "main": "index.html",
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -20,7 +21,8 @@
     "angular-route": "1.2.14",
     "angular": "1.2.14",
     "angular-resource": "1.2.14",
-    "angular-sanitize": "1.2.14"
+      "angular-sanitize": "1.2.14",
+      "bootstrap": "~3.1.1"
   },
   "devDependencies": {
     "angular-scenario": "1.2.14"

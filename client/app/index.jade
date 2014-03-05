@@ -1,17 +1,19 @@
 doctype html
 html(lang='en', ng-app='myApp')
-  head
-    meta(charset='utf-8')
-    title Catalog
-    link(rel='stylesheet', href='css/app.css')
-  body
-  h1 Catalog
-  ul.menu
-    li
-      a(href='#/items') Items
-    li
-      a(href='#/options') Options
-  div(ng-view='')
+    head
+        meta(charset='utf-8')
+        title Catalog
+        link(rel='stylesheet', href='css/app.css')
+        link(rel='stylesheet', href='css/bootstrap.min.css')
+    body
+    header
+        h1 Catalog
+        ul.menu
+            li.left
+                a(href='#/items') Items
+            li.right
+                a(href='#/options') Options
+    div(ng-view='')
 
 script(src='vendor/vendor.min.js')
 script(src='all.js')

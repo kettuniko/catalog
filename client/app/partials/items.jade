@@ -1,2 +1,6 @@
-.item(ng-repeat='item in items')
-    img(src='{{item.logoUrl}}')
+.filter(ng-show='items.length > 0')
+    div Filter
+    input.filter-input(ng-model='filter')
+.items
+    .item(ng-repeat='item in items | filter:filter')
+        img(src='{{item.logoUrl}}', alt='{{item.name}}', title='{{item.name}}')

@@ -1,38 +1,60 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+header {
+  width: 200px;
+  margin: 0 auto 20px auto;
+  h1 {
+    text-align: center;
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0 0 0.5em;
+
+    li {
+      display: inline;
+      text-align: center;
+
+      &.left {
+        float: left;
+        padding-left: 50px;
+      }
+
+      &.right {
+        float: right;
+        padding-right: 50px;
+      }
+    }
+  }
 }
 
-.menu:before {
-  content: "[";
+.import {
+  width: 400px;
+  margin: 0 auto;
+  h4, .row {
+    text-align: center;
+  }
 }
 
-.menu:after {
-  content: "]";
+.item img {
+  float: left;
+  padding: 1px;
+  width: 10%;
 }
 
-.menu > li {
-  display: inline;
+.filter {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.success, .error {
+  margin-top: 10px;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-p.success {
+.success {
   color: green;
 }
 
-p.error {
+.error {
   color: red;
 }
