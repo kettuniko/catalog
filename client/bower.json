@@ -5,9 +5,8 @@
   "authors": [
     "niko (kopzu)"
   ],
-    "directory": "app/",
     "main": "index.html",
-  "license": "MIT",
+    "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
