@@ -13,7 +13,7 @@ For managing personal digital (and other) content
 ###Server
 ####To install and start an embedded tomcat on port 8081
 * cd server
-* gradlew build && java -jar build/libs/catalog-server-0.1.jar
+* ./gradlew build && java -jar build/libs/catalog-server-0.1.jar
 
 ###Database
 * Setup a MongoDB and create a database "catalogdb" with "items"-collection
