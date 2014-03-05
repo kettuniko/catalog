@@ -16,11 +16,13 @@ public class Item {
     private String id;
     private String name;
     private ItemType type;
+    private String iconUrl;
     private boolean completed;
 
-    public Item(String name, ItemType type) {
+    public Item(String name, ItemType type, String logoUrl) {
         this.name = name;
         this.type = type;
+        this.iconUrl = logoUrl;
     }
 
 }

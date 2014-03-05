@@ -25,7 +25,7 @@ public class ImportServiceImpl implements ImportService {
         List<Item> importedItems = new ArrayList<>();
         try {
             for (SteamGame game : SteamId.create(userName).getGames().values()) {
-                importedItems.add(new Item(game.getName(), ItemType.GAME));
+                importedItems.add(new Item(game.getName(), ItemType.GAME, game.getLogoUrl()));
             }
         } catch (SteamCondenserException sce) {
             throw new ResourceNotFoundException(sce);
