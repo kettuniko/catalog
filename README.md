@@ -16,7 +16,7 @@ For managing personal digital (and other) content
 * gradlew build && java -jar build/libs/catalog-server-0.1.jar
 
 ###Database
-* Setup a MongoDB and create a database "catalogdb"
+* Setup a MongoDB and create a database "catalogdb" with "items"-collection
 
 ###Technology stack
 ####Client-side
